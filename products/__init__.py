@@ -9,18 +9,13 @@ class Product:
         self.cost = cost
         self.qty = qty
 
+    @staticmethod
     def load(data):
         return Product(data['id'], data['name'], data['description'], data['cost'], data['qty'])
 
 
 def list_products() -> list[Product]:
-    products = dao.list_products()
-    result = []
-    for product in products:
-        result.append(Product.load(product))
-    
-    return result
-
+    return [Product.load(product) for product in dao.list_products()]
 
 
 def get_product(product_id: int) -> Product:
@@ -35,5 +30,3 @@ def update_qty(product_id: int, qty: int):
     if qty < 0:
         raise ValueError('Quantity cannot be negative')
     dao.update_qty(product_id, qty)
-
-

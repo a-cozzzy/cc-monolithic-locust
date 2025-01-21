@@ -37,13 +37,9 @@ def get_cart(username: str) -> list:
     for row in cart:
         temp_cart.append(row)
     
-    final_cart = []
-    for item in temp_cart:
-        final_cart.append(item)
-    
     cursor.close()
     conn.close()
-    return final_cart
+    return temp_cart
 
 
 def add_to_cart(username: str, product_id: int):
